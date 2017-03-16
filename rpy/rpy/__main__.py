@@ -1,3 +1,1 @@
-print ("rpy.main")
-
-
+print("execute python rpy.py <arguments>")

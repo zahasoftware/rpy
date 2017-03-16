@@ -27,8 +27,8 @@ class RpyManager(object):
                 arg = arg_splited[0]
                 val = arg_splited[1]
 
-                if arg == "gpi":
-                    self.gpi = val
+                if arg == "gpio":
+                    self.gpi = int(val)
 
                 if arg == "servo-move" or arg == "sm":
                     self.grade = val
@@ -42,11 +42,11 @@ class RpyManager(object):
             raise Exception("You have to choice a gpio value for pin.")
 
         if self.grade != 0:
+            servoMotor = ServoMotor()
             try:
-                servoMotor = ServoMotor()
-                servoMotor.gpio = 18
+                servoMotor.gpio = self.gpi
                 servoMotor.move(self.grade)
-                time.sleep(1)
+                time.sleep(0.5)
             finally:
                 servoMotor.cleanup()
 
