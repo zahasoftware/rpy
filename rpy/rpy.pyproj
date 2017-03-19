@@ -29,6 +29,11 @@
     <Compile Include="RpyManager.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="rpy\arg\BaseArg.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="rpy\arg\ServoArg.py" />
+    <Compile Include="rpy\arg\__init__.py" />
     <Compile Include="rpy\ServoMotor.py">
       <SubType>Code</SubType>
     </Compile>
@@ -41,6 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="rpy\" />
+    <Folder Include="rpy\arg\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="README.md" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

@@ -1,57 +1,71 @@
 import sys
 import time
-sys.path.append(".\\rpy\\")
+import logging
 
-from rpy.ServoMotor import ServoMotor
+sys.path.append(".\\rpy\\arg\\")
+from rpy.arg.ServoArg import ServoArg
+
+peripherics = {'generic':
+                    ['gpio' ,'p', 'rpy'],
+                'servo':
+                    ['srv', 'sm', 'servo-move'],
+                'cam':
+                    ['cam', 'out']}
 
 class RpyManager(object):
-    """Raspberry Python Manager"""
-
+    """ Raspberry Python Manager """
     def __init__(self):
-        self.gpi = 1
-        self.grade = 0
+        logging.basicConfig(level=logging.DEBUG)
 
-    def init(self, argv):
+    def FindPeripheric2Process(self, first_argument, key):
+        for arg in peripherics[key]:
+
+            logging.debug("Are selected peripheric %s argument %s " % (key,arg))
+            if arg in first_argument:
+               return arg
+        return None
+
+    def do(self, argv):
+        if (argv.count == 1):
+            raise 
+
+        first_argument = [x for x in argv 
+                          if not any(a in x for a in peripherics["generic"])]
+        
+
+        if first_argument.count == 0:
+            raise
+        else:
+            first_argument = first_argument[0]
+
+        logging.debug("First argument is '%s' " % first_argument)
+
         try:
-            print("RpyManager.init")
-
-            for i in range(len(argv)):
-                arg_splited = argv[i].split("=")
-
-                if i == 0:
+            periphericKey = None
+            for key in peripherics:
+                if key == "generic":
                     continue
 
-                if i != 0 and len(arg_splited) != 2:
-                    raise Exception("Invalid argument ", arg_splited)
+                if None != self.FindPeripheric2Process(first_argument, key):
+                    periphericKey = key
+                    break
 
-                arg = arg_splited[0]
-                val = arg_splited[1]
+            logging.info("Selected peripherics are: %s" % periphericKey)
 
-                if arg == "gpio":
-                    self.gpi = int(val)
+            peripheric = None
+            if periphericKey == "servo":
+                peripheric = ServoArg()
+            elif periphericKey == "cam":
+                pass
 
-                if arg == "servo-move" or arg == "sm":
-                    self.grade = val
+            if peripheric != None:
+                peripheric.load_arguments(argv)
+                peripheric.do()
 
         except Exception as e:
-            print("Invalid arguments: ",e)
-            self.show_help()
-
-    def do(self):
-        if self.gpi == 0:
-            raise Exception("You have to choice a gpio value for pin.")
-
-        if self.grade != 0:
-            servoMotor = ServoMotor()
-            try:
-                servoMotor.gpio = self.gpi
-                servoMotor.move(self.grade)
-                time.sleep(0.5)
-            finally:
-                servoMotor.cleanup()
+            logging.error("Invalid arguments: %s" % (e))
 
     def show_help(self):
-        print("\n"
-              "Example of use:\n"
-              "rpy gpio=<pin> [servo-move=<0-180>]"
-              "\n")
+        with open("./README.md","r") as file:
+            print(file.read())
+
