@@ -55,6 +55,7 @@ class RpyManager(object):
             peripheric = None
             if periphericKey == "servo":
                 peripheric = ServoArg()
+
             elif periphericKey == "cam":
                 pass
 
@@ -66,6 +67,6 @@ class RpyManager(object):
             logging.error("Invalid arguments: %s" % (e))
 
     def show_help(self):
-        with open("./README.md","r") as file:
+        with open("./man.txt","r") as file:
             print(file.read())
 
