@@ -1,10 +1,9 @@
 import sys
 import time
 import logging
-sys.path.append(".\\rpy\\")
 
-from rpy.ServoMotor import ServoMotor
-from rpy.arg.BaseArg import BaseArg
+from fwk.ServoMotor import ServoMotor
+from arg.BaseArg import BaseArg
 
 class ServoArg(BaseArg):
     """Servo arg for manager arguments"""
@@ -13,7 +12,7 @@ class ServoArg(BaseArg):
         self.grade = 0
 
     def load_arguments(self, argv):
-        for i in range(len(argv)[1:]):
+        for i in range(len(argv))[1:]:
 
             arg, val = self.get_argument(argv, i)
 

@@ -2,11 +2,11 @@ import sys
 import time
 import logging
 
-sys.path.append(".\\rpy\\arg\\")
-from rpy.arg.ServoArg import ServoArg
+from arg.ServoArg import ServoArg 
+from arg.InvalidUsageError import InvalidUsageError 
 
 peripherics = {'generic':
-                    ['gpio' ,'p', 'rpy'],
+                    ['gpio' ,'p', 'rpy', 'help'],
                 'servo':
                     ['srv', 'sm', 'servo-move'],
                 'cam':
@@ -26,21 +26,22 @@ class RpyManager(object):
         return None
 
     def do(self, argv):
-        if (argv.count == 1):
-            raise 
-
-        first_argument = [x for x in argv 
-                          if not any(a in x for a in peripherics["generic"])]
-        
-
-        if first_argument.count == 0:
-            raise
-        else:
-            first_argument = first_argument[0]
-
-        logging.debug("First argument is '%s' " % first_argument)
-
         try:
+            if (argv.count == 1):
+                raise InvalidUsageError()
+
+            first_argument = [x for x in argv 
+                              if not any(a in x for a in peripherics["generic"])]
+            
+            logging.debug("first_argument=%s" % first_argument)
+
+            if len(first_argument) == 0:
+                raise InvalidUsageError()
+            else:
+                first_argument = first_argument[0]
+
+            logging.debug("First argument is '%s' " % first_argument)
+
             periphericKey = None
             for key in peripherics:
                 if key == "generic":
@@ -63,8 +64,11 @@ class RpyManager(object):
                 peripheric.load_arguments(argv)
                 peripheric.do()
 
+        except InvalidUsageError as ie:
+            self.show_help()
+
         except Exception as e:
-            logging.error("Invalid arguments: %s" % (e))
+            logging.exception("Invalid arguments, detail: %s" % e)
 
     def show_help(self):
         with open("./man.txt","r") as file:

@@ -25,28 +25,25 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="arg\InvalidUsageError.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fwk\ServoMotor.py" />
+    <Compile Include="fwk\__init__.py" />
+    <Compile Include="fwk\__main__.py" />
     <Compile Include="rpy.py" />
     <Compile Include="RpyManager.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="rpy\arg\BaseArg.py">
+    <Compile Include="arg\BaseArg.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="rpy\arg\ServoArg.py" />
-    <Compile Include="rpy\arg\__init__.py" />
-    <Compile Include="rpy\ServoMotor.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="rpy\__init__.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="rpy\__main__.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="arg\ServoArg.py" />
+    <Compile Include="arg\__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="rpy\" />
-    <Folder Include="rpy\arg\" />
+    <Folder Include="fwk\" />
+    <Folder Include="arg\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="man.txt" />
