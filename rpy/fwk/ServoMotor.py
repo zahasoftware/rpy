@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO    #Importamos la libreria RPi.GPIO
 import logging
 
 class ServoMotor(object):
-    """description of class"""
+    """ RPi.GPIO Wrapper Class """
 
     def __init__(self, **kwargs):
         logging.debug("ServoMotor.__init__")

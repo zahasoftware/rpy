@@ -28,6 +28,10 @@
     <Compile Include="arg\InvalidUsageError.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="arg\CameraArg.py" />
+    <Compile Include="fwk\PiCamera.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="fwk\ServoMotor.py" />
     <Compile Include="fwk\__init__.py" />
     <Compile Include="fwk\__main__.py" />
