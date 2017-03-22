@@ -29,9 +29,13 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="arg\CameraArg.py" />
-    <Compile Include="fwk\PiCamera.py">
+    <Compile Include="fwk\cam\Camera.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="fwk\cam\CameraOptions.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="fwk\cam\__init__.py" />
     <Compile Include="fwk\ServoMotor.py" />
     <Compile Include="fwk\__init__.py" />
     <Compile Include="fwk\__main__.py" />
@@ -48,6 +52,7 @@
   <ItemGroup>
     <Folder Include="fwk\" />
     <Folder Include="arg\" />
+    <Folder Include="fwk\cam\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="man.txt" />
