@@ -29,6 +29,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="arg\CameraArg.py" />
+    <Compile Include="arg\PWMArg.py" />
     <Compile Include="fwk\cam\Camera.py">
       <SubType>Code</SubType>
     </Compile>
@@ -36,6 +37,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="fwk\cam\__init__.py" />
+    <Compile Include="fwk\PWM.py" />
     <Compile Include="fwk\ServoMotor.py" />
     <Compile Include="fwk\__init__.py" />
     <Compile Include="fwk\__main__.py" />

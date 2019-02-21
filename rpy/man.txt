@@ -2,13 +2,17 @@
 Rpy 1.0 command line for the follow peripherics:
 
 - ServoMotor 
+- PWM
+- LED
 
 # Rpy Usage
 ## ServoMotor:
 
-rpy.py gpio=<pin> servo-move=<grades 0-180>
 
 sm, servo-move	:*Move the motor to specified grade from 0 to 180.*
+
+Ex
+rpy.py servo gpio=<pin> servo-move=<grades 0-180>
 
 ## Generics options:
 p,  gpio		:*gpio motor pin.*

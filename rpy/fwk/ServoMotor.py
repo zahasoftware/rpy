@@ -1,4 +1,4 @@
-import RPi.GPIO as GPIO    #Importamos la libreria RPi.GPIO
+import RPi.GPIO as GPIO   
 import logging
 
 class ServoMotor(object):

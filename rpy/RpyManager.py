@@ -2,15 +2,16 @@ import sys
 import time
 import logging
 
+from arg.PWMArg import PWMArg
 from arg.ServoArg import ServoArg 
 from arg.InvalidUsageError import InvalidUsageError 
 
-peripherics = {'generic':
-                    ['gpio' ,'p', 'rpy', 'help'],
-                'servo':
-                    ['srv', 'sm', 'servo-move'],
-                'cam':
-                    ['cam', 'out']}
+peripherics = {'generic': ['gpio' ,'pin' ,'p', 'rpy', 'help'],
+                'servo': ['srv', 'sm', 'servo-move'],
+                'cam': ['cam', 'out'],
+                'pwm': ['state','value'],
+                'dig': ['state','value']
+                }
 
 class RpyManager(object):
     """ Raspberry Python Manager """
@@ -57,6 +58,9 @@ class RpyManager(object):
             if periphericKey == "servo":
                 peripheric = ServoArg()
 
+            elif periphericKey == "pwm":
+                peripheric = PWMArg()
+
             elif periphericKey == "cam":
                 pass
 
@@ -73,4 +77,3 @@ class RpyManager(object):
     def show_help(self):
         with open("./man.txt","r") as file:
             print(file.read())
-
