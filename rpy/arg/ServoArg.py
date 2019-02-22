@@ -12,7 +12,7 @@ class ServoArg(BaseArg):
         self.grade = 0
 
     def load_arguments(self, argv):
-        for i in range(len(argv))[1:]:
+        for i in range(len(argv))[2:]:
 
             arg, val = self.get_argument(argv, i)
 
