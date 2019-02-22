@@ -2,6 +2,7 @@ import sys
 import time
 import logging
 
+from arg.LEDArg import LEDArg
 from arg.ServoArg import ServoArg 
 from arg.PWMArg import PWMArg
 from arg.InvalidUsageError import InvalidUsageError 
@@ -10,7 +11,7 @@ peripherics = {'generic': ['gpio' ,'pin' ,'p', 'rpy', 'help'],
                 'servo': ['srv', 'sm', 'servo-move'],
                 'cam': ['cam', 'out'],
                 'pwm': ['state','value'],
-                'dig': ['state','value']
+                'led': ['state','value']
                 }
 
 class RpyManager(object):
@@ -48,6 +49,9 @@ class RpyManager(object):
 
             elif periphericKey == "pwm":
                 peripheric = PWMArg()
+
+            elif periphericKey == "led":
+                peripheric = LEDArg()
 
             elif periphericKey == "cam":
                 pass

@@ -2,15 +2,15 @@ import sys
 import time
 import logging
 
-from fwk.PWM import PWM 
+from fwk.LED import LED
 from arg.BaseArg import BaseArg
 
-class PWMArg(BaseArg):
-    """PWMArg arg for manager arguments"""
+class LEDArg(BaseArg):
+    """LEDArg arg for manager arguments"""
 
     def __init__(self):
         self.pwm = PWM()
-        super(PWMArg, self).__init__()
+        super(LEDArg, self).__init__()
 
     def load_arguments(self, argv):
         for i in range(len(argv))[2:]:
@@ -19,9 +19,6 @@ class PWMArg(BaseArg):
 
             if arg == "gpio" or arg == "pin" or arg == "p":
                 self.pwm.gpio = int(val)
-
-            if arg == "hertz" or arg == "hz" :
-                self.pwm.hertz = int(val)
 
             if arg == "value" or arg == "val":
                 self.pwm.value = int(val)
