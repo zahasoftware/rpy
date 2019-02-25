@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.26304.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "rpy", "rpy\rpy.pyproj", "{84931B50-97EE-4196-ABF9-7F1BB8F0841B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rnet", "rnet\rnet.csproj", "{D7120162-D775-4C7B-B4A3-9AEEC0CDA406}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "rnet.lib", "rnet.lib\rnet.lib.csproj", "{E5C40C7C-C537-473D-97C4-0BE89C7532D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -13,8 +17,19 @@ Global
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{84931B50-97EE-4196-ABF9-7F1BB8F0841B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{84931B50-97EE-4196-ABF9-7F1BB8F0841B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7120162-D775-4C7B-B4A3-9AEEC0CDA406}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7120162-D775-4C7B-B4A3-9AEEC0CDA406}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7120162-D775-4C7B-B4A3-9AEEC0CDA406}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7120162-D775-4C7B-B4A3-9AEEC0CDA406}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5C40C7C-C537-473D-97C4-0BE89C7532D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5C40C7C-C537-473D-97C4-0BE89C7532D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5C40C7C-C537-473D-97C4-0BE89C7532D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5C40C7C-C537-473D-97C4-0BE89C7532D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FF3AA10-F418-4D77-8BAA-6461E7A7B88A}
 	EndGlobalSection
 EndGlobal

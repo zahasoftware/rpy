@@ -13,7 +13,7 @@ class PWMArg(BaseArg):
         super(PWMArg, self).__init__()
 
     def load_arguments(self, argv):
-        for i in range(len(argv))[2:]:
+        for i in range(len(argv))[1:]:
 
             arg, val = self.get_argument(argv, i)
 
@@ -23,15 +23,14 @@ class PWMArg(BaseArg):
             if arg == "hertz" or arg == "hz" :
                 self.pwm.hertz = int(val)
 
-            if arg == "value" or arg == "val":
+            if arg == "value" or arg == "val" or arg == "v": 
                 self.pwm.value = int(val)
 
     def do(self):
         self.validate()
 
-        if self.pwm.value != 0:
-            try:
-                self.pwm.execute()
-                time.sleep(0.5)
-            finally:
-                self.pwm.cleanup()
+        try:
+            self.pwm.execute()
+            time.sleep(0.5)
+        finally:
+            self.pwm.cleanup()

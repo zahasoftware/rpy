@@ -1,4 +1,6 @@
 import time
+from distutils import sys
+from fwk import GPIOManager
 import RPi.GPIO as GPIO   
 import logging
 
@@ -14,11 +16,11 @@ class LED(object):
 
     #Property gpio
     def set_gpio(self, value):
-        GPIO.setup(self.gpio, GPIO.OUT)
+        GPIOManager.setup(value)
         self.__gpio = value
 
     def execute(self):
-        logging.debug("execute pwm with gpio=" + str(self.gpio) + " value=" + str(self.value) + " and pulse=" + str(self.pulse_by_seconds))
+        logging.debug("execute led with gpio=" + str(self.gpio) + " value=" + str(self.value))
         GPIO.output(self.gpio, self.value) 
 
     def get_gpio(self):
@@ -28,4 +30,3 @@ class LED(object):
 
     def cleanup(self):
         logging.debug("clean up LED")
-        #GPIO.cleanup()
