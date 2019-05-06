@@ -29,11 +29,13 @@ namespace rnet.lib.Implementations
             this.pythonScriptPath = pythonScriptPath;
         }
 
+     
+
         internal void BeginStandardInputWrite()
         {
             soutput.Clear();
             serror.Clear();
-            if (process.HasExited)
+            if (!IsRunning(process))
             {
                 Start();
             }
@@ -61,10 +63,15 @@ namespace rnet.lib.Implementations
             //var psi = new ProcessStartInfo();
             process = new Process();
 
+            if (!File.Exists(pythonScriptPath))
+            {
+                throw new FileNotFoundException($"File \"{pythonScriptPath}\" doesn't exists");
+            }
+
             process.StartInfo.FileName = "python3";
             process.StartInfo.UseShellExecute = false;
             process.StartInfo.CreateNoWindow = true;
-            process.StartInfo.Arguments = "rpy.py no-banner";
+            process.StartInfo.Arguments = $"{pythonScriptPath} no-banner";
             process.StartInfo.RedirectStandardOutput = true;
             process.StartInfo.RedirectStandardInput = true;
             process.StartInfo.RedirectStandardError = true;
@@ -99,6 +106,7 @@ namespace rnet.lib.Implementations
                 }
             };
 
+
             process.Start();
             standardInput = process.StandardInput;
 
@@ -108,6 +116,7 @@ namespace rnet.lib.Implementations
             EndStandardInputWrite();//To receive "Enter command:" From python
         }
 
+
         public void Dispose()
         {
             process.Dispose();
@@ -115,6 +124,22 @@ namespace rnet.lib.Implementations
 
             outputWaitHandle.Dispose();
             errorWaitHandle.Dispose();
+        }
+
+        public bool IsRunning(Process process)
+        {
+            if (process == null)
+                throw new ArgumentNullException("process");
+
+            try
+            {
+                Process.GetProcessById(process.Id);
+            }
+            catch (ArgumentException)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
