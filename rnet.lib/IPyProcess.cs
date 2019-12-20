@@ -3,7 +3,7 @@
     /// <summary>
     /// Interface to communicate with rpy process.
     /// </summary>
-    public interface IRPYProcess
+    public interface IPyProcess
     {
         /// <summary>
         /// Start RPY process 

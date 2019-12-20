@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace rnet.lib.Implementations
+namespace rnet.lib.Implementations.Live
 {
-    public class PWM : IPWM
+    public class LivePWM : IPWM
     {
-        private RPYProcess rpyProcess;
+        private LiveProcess rpyProcess;
         private readonly int pin;
-        private IDictionary<int, PWM> Pwms { get; } = new Dictionary<int, PWM>();
+        private IDictionary<int, LivePWM> Pwms { get; } = new Dictionary<int, LivePWM>();
 
         public IPWM this[int pin]
         {
@@ -15,18 +15,18 @@ namespace rnet.lib.Implementations
             {
                 if (!Pwms.ContainsKey(pin))
                 {
-                    Pwms[pin] = new PWM(rpyProcess, pin);
+                    Pwms[pin] = new LivePWM(rpyProcess, pin);
                 }
                 return Pwms[pin];
             }
         }
 
-        public PWM(RPYProcess rpyProcess)
+        public LivePWM(LiveProcess rpyProcess)
         {
             this.rpyProcess = rpyProcess;
         }
 
-        public PWM(RPYProcess rpyProcess, int pin)
+        public LivePWM(LiveProcess rpyProcess, int pin)
         {
             this.rpyProcess = rpyProcess;
             this.pin = pin;
@@ -36,13 +36,13 @@ namespace rnet.lib.Implementations
         {
             lock (rpyProcess.@lock)
             {
-                Console.WriteLine($"Write {value}");
+                Console.WriteLine($"{DateTime.Now:HH:mm:ss} Write {value}");
                 rpyProcess.BeginStandardInputWrite();
 
                 rpyProcess.standardInput.WriteLine($"pwm pin={pin} value={value}");///Executing command
 
                 rpyProcess.EndStandardInputWrite();
-                Console.WriteLine($"Stop Waiting {value}");
+                Console.WriteLine($"{DateTime.Now:HH:mm:ss} Stop Waiting {value}");
             }
         }
 

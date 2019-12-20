@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace rnet.lib.Implementations
+namespace rnet.lib.Implementations.Live
 {
-    public class Switch : ISwitch
+    public class LiveSwitch : ISwitch
     {
 
-        private readonly RPYProcess rpyProcess;
+        private readonly LiveProcess rpyProcess;
         private readonly int pin;
 
-        public Switch(RPYProcess rpyProcess)
+        public LiveSwitch(LiveProcess rpyProcess)
         {
             this.rpyProcess = rpyProcess;
         }
 
-        public Switch(RPYProcess rpyProcess, int pin)
+        public LiveSwitch(LiveProcess rpyProcess, int pin)
         {
             this.rpyProcess = rpyProcess;
             this.pin = pin;
@@ -28,7 +28,7 @@ namespace rnet.lib.Implementations
             {
                 if (!Switchs.ContainsKey(pin))
                 {
-                    Switchs[pin] = new Switch(rpyProcess, pin);
+                    Switchs[pin] = new LiveSwitch(rpyProcess, pin);
                 }
                 return Switchs[pin];
             }

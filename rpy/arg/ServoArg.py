@@ -30,7 +30,6 @@ class ServoArg(BaseArg):
             try:
                 servoMotor.gpio = self.gpio
                 servoMotor.move(self.grade)
-                time.sleep(0.5)
             finally:
                 servoMotor.cleanup()
 

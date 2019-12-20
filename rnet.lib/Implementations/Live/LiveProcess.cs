@@ -4,9 +4,9 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading;
 
-namespace rnet.lib.Implementations
+namespace rnet.lib.Implementations.Live
 {
-    public class RPYProcess : IRPYProcess, IDisposable
+    public class LiveProcess : IPyProcess, IDisposable
     {
         internal Process process;
 
@@ -20,10 +20,10 @@ namespace rnet.lib.Implementations
         internal readonly Object @lock;
         private readonly string pythonScriptPath;
 
-        public ISwitch Switch { get => new Switch(this); }
-        public IPWM PWM { get => new PWM(this); }
+        public ISwitch Switch { get => new LiveSwitch(this); }
+        public IPWM PWM { get => new LivePWM(this); }
 
-        public RPYProcess(string pythonScriptPath = "rpy.py")
+        public LiveProcess(string pythonScriptPath = "rwy.py")
         {
             @lock = new object();
             this.pythonScriptPath = pythonScriptPath;
@@ -37,6 +37,7 @@ namespace rnet.lib.Implementations
             serror.Clear();
             if (!IsRunning(process))
             {
+                Console.WriteLine( "BeginStandardInputWriter: Starging process again");
                 Start();
             }
         }
@@ -85,7 +86,7 @@ namespace rnet.lib.Implementations
             {
                 if (e.Data == null || e.Data == "Enter command:")
                 {
-                    Console.WriteLine($"Releasing stadard output, with value={e.Data}");
+                    Console.WriteLine($"{DateTime.Now:HH:mm:ss} Releasing stadard output, with value={e.Data}");
                     outputWaitHandle.Set();
                 }
                 else

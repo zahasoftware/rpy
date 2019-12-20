@@ -17,11 +17,12 @@ class LEDArg(BaseArg):
 
             arg, val = self.get_argument(argv, i)
 
-            if arg == "gpio" or arg == "pin" or arg == "p":
-                self.pwm.gpio = int(val)
+            if (not (arg is None)):
+                if arg == "gpio" or arg == "pin" or arg == "p":
+                    self.pwm.gpio = int(val)
 
-            if arg == "value" or arg == "val" or arg == "v":
-                self.pwm.value = int(val)
+                if arg == "value" or arg == "v":
+                    self.pwm.value = int(val)
 
     def do(self):
         self.validate()
