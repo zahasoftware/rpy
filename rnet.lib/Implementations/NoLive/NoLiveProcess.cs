@@ -10,13 +10,9 @@ namespace rnet.lib.Implementations.NoLive
     {
         internal Process process;
 
-        private AutoResetEvent outputWaitHandle;
-        private AutoResetEvent errorWaitHandle;
-        private AutoResetEvent[] handles;
         internal List<string> soutput = new List<string>();
         internal List<string> serror = new List<string>();
 
-        internal StreamWriter standardInput;
         internal readonly Object @lock;
         private readonly string pythonScriptPath;
 
@@ -41,11 +37,7 @@ namespace rnet.lib.Implementations.NoLive
             }
         }
 
-        internal void EndStandardInputWrite()
-        {
-            WaitHandle.WaitAny(handles);
-        }
-
+       
         public void CleanOutputs()
         {
             soutput.Clear();
