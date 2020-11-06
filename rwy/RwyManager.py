@@ -3,7 +3,6 @@ from fwk import GPIOManager
 import time
 import logging
 
-import RPi.GPIO as GPIO   
 from arg.LEDArg import LEDArg
 from arg.PWMArg import PWMArg
 from arg.InvalidUsageError import InvalidUsageError 
